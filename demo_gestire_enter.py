@@ -62,6 +62,8 @@ options = GestureRecognizerOptions(
 )
 
 cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 360)
 
 while True:
     # 顯示起始畫面
@@ -140,15 +142,18 @@ while True:
 
                 if latest_gesture:
                     cv2.putText(img, latest_gesture.category_name, (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+                    
+                img_display = cv2.resize(img, None, fx=1.5, fy=1.5, interpolation=cv2.INTER_LINEAR)
+
 
                 if elapsed_time >= play_time:
                     print(f"\u23F0 時間到！最終得分：{score}")
                     cv2.putText(img, "Game Over - Press Enter to Restart", (80, frame_h // 2),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 3)
-                    cv2.imshow('oxxostudio', img)
+                    cv2.imshow('oxxostudio', img_display)
                     break
 
-                cv2.imshow('oxxostudio', img)
+                cv2.imshow('oxxostudio', img_display)
                 if cv2.waitKey(1) == 27:  # ESC
                     cap.release()
                     cv2.destroyAllWindows()
