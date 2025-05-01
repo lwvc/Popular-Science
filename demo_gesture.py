@@ -5,7 +5,7 @@ import cv2
 import time
 import random
 
-play_time = 100
+play_time = 10
 
 def result_callback(result, output_image, timestamp_ms):
     global latest_gesture, latest_landmarks
