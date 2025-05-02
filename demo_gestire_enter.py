@@ -131,9 +131,10 @@ def game_mode(cap):
             recognizer.recognize_async(mp_image, int(time.time() * 1000))
 
             frame_h, frame_w = img.shape[:2]
-            box_x1 = frame_w // 2 - 50
-            box_y1 = frame_h - 60
-            box_x2 = frame_w // 2 + 50
+            box_w, box_h = 160, 100
+            box_x1 = frame_w // 2 - box_w // 2
+            box_y1 = frame_h - box_h
+            box_x2 = frame_w // 2 + box_w // 2
             box_y2 = frame_h
 
             elapsed_time = time.time() - start_time
